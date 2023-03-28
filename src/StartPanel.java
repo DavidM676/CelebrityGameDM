@@ -1,4 +1,4 @@
-import java.awt.Color;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.ButtonGroup;
@@ -175,7 +175,7 @@ public class StartPanel extends JPanel implements ActionListener {
    * Used to link all Listeners to the associated GUI components.
    */
   private void setupListeners() {
-    addCelebrityButton.addActionListener(this);
+    addCelebrityButton.addActionListener(this);startButton.addActionListener(this);
   }
 
 
@@ -221,20 +221,24 @@ public class StartPanel extends JPanel implements ActionListener {
   }
 
   public void actionPerformed(ActionEvent ae){
-    // when "add celebrity" button gets clicked:
-    answerField.setBackground(Color.WHITE);
-    clueField.setBackground(Color.WHITE);
-    if (validate(answerField.getText(), clueField.getText())) {
-      addToGame();
-    } else {
-      invalidInput();
+
+    JButton j = (JButton) ae.getSource();
+    if (j.getText().equals("Add current celebrity")) {
+      // when "add celebrity" button gets clicked:
+      answerField.setBackground(Color.WHITE);
+      clueField.setBackground(Color.WHITE);
+      if (validate(answerField.getText(), clueField.getText())) {
+        addToGame();
+      } else {
+        invalidInput();
+      }
+      celebrityCount = controller.getCelebrityGameSize();
+      celebrityCountLabel.setText(countLabelText + celebrityCount);
+    } else if (j.getText().equals("Start Celebrity game"))  {
+      controller.play();
+
     }
-    celebrityCount = controller.getCelebrityGameSize();
-    celebrityCountLabel.setText(countLabelText + celebrityCount);
 
   }
-  private void setupListers(){
-    addCelebrityButton.addActionListener(this);
-    //will code up the rest later
-  }
+
 }
