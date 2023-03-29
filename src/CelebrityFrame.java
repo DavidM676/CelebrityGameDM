@@ -42,7 +42,12 @@ public class CelebrityFrame extends JFrame {
 		setupFrame();
 
 	}
-	
+
+
+	public void resetSeconds() {
+		gamePanel.resetSeconds();
+	}
+
 	/**
 	 * Configures the JFrame window subclass to add the panel and set size based information.
 	 */
