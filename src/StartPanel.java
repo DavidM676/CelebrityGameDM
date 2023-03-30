@@ -219,7 +219,13 @@ public class StartPanel extends JPanel implements ActionListener {
     controller.addCelebrity(answer, clue, type);
     startButton.setEnabled(true);
   }
+  public void reset() {
+    celebrityCountLabel.setText("0");
+    answerField.setText("Type a celebrity here (4 letters minimum)");
+    clueField.setText("Enter a celebrity clue here (10 letters minimum)\"");
 
+    startButton.setEnabled(false);
+  }
   public void actionPerformed(ActionEvent ae){
 
     JButton j = (JButton) ae.getSource();

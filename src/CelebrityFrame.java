@@ -43,7 +43,9 @@ public class CelebrityFrame extends JFrame {
 
 	}
 
-
+	public void reset() {
+		startPanel.reset();
+	}
 	public void resetSeconds() {
 		gamePanel.resetSeconds();
 	}
@@ -88,4 +90,6 @@ public class CelebrityFrame extends JFrame {
 		CardLayout cardLayout = (CardLayout) layout;
 		cardLayout.show(panelCards, screen);
 	}
+
+
 }

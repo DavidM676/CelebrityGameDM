@@ -175,15 +175,23 @@ public class CelebrityPanel extends JPanel implements ActionListener{
     panelLayout.putConstraint(SpringLayout.NORTH, dynamicTimerLabel, 0, SpringLayout.NORTH, staticTimerLabel);
     panelLayout.putConstraint(SpringLayout.WEST, dynamicTimerLabel, 5, SpringLayout.EAST, staticTimerLabel);
   }
+
+  public void startAgain() {
+    staticTimerLabel.setText("Time remaining: ");
+    dynamicTimerLabel.setText("30");
+    clueArea.setBackground(Color.white);
+    controller.idk();
+  }
   public void actionPerformed(ActionEvent ae) {
 
     Object source  = ae.getSource();
     if (source instanceof JButton) {
       JButton clickedButton = (JButton) source;
-
       String buttonText = clickedButton.getText();
       if (buttonText.equals("Submit guess")) {
         updateScreen();
+      } else if (buttonText.equals("Start again")) {
+        startAgain();
       }
     } else if  (source instanceof Timer) {
       timerFires();
@@ -196,13 +204,15 @@ public class CelebrityPanel extends JPanel implements ActionListener{
   private void setupListeners() {
     guessButton.addActionListener(this);
     countdownTimer.addActionListener(this);
+    resetButton.addActionListener(this);
 
   }
 
   public void resetSeconds() {
+    seconds = 30;
     countdownTimer.start();
   }
-  
+
   /**
    * Helper method for when the ActionListener attached to the timer fires.
    * Sets the text of the label to match the remaining time and a message at
